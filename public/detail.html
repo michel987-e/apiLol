@@ -1,0 +1,58 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détails Peluche</title>
+    <link rel="stylesheet" href="detail.css">
+</head>
+
+</head>
+<body>
+    <div class="container">
+        <div class="left">
+            <img id="peluche-photo" src="" alt="Photo de peluche">
+        </div>
+        <div class="right">
+            <h1 id="peluche-nom">Nom de la Peluche</h1>
+            <p><strong>Catégorie:</strong> <span id="peluche-categorie"></span></p>
+            <p><strong>Taille:</strong> <span id="peluche-taille"></span></p>
+            <p><strong>Prix:</strong> <span id="peluche-prix"></span>€</p>
+            <button  id="addToCartBtn" class=" btn-modifier">
+                Ajouter au panier
+              </button>
+              <br>
+            <hr>
+            <strong>Description:</strong><br>
+            <p id="peluche-description">Description de la peluche</p>
+
+        </div>
+    </div>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const pelucheId = urlParams.get('id');
+        async function fetchPelucheDetails() {
+            try {
+                const response = await fetch(`http://localhost:3000/peluches/${pelucheId}`);
+                const peluche = await response.json();
+                document.getElementById('peluche-nom').textContent = peluche.nom;
+                document.getElementById('peluche-photo').src = `/assets/${peluche.photo}`;
+                document.getElementById('peluche-photo').alt = peluche.nom;
+                document.getElementById('peluche-description').textContent = peluche.description;
+                document.getElementById('peluche-categorie').textContent = peluche.categorie;
+                document.getElementById('peluche-taille').textContent = peluche.taille;
+                document.getElementById('peluche-prix').textContent = peluche.prix;
+                document.getElementById("addToCartBtn").addEventListener("click", function() {
+                this.textContent = "Ajouté au panier";
+                this.disabled = true;
+                setTimeout(() => {
+                window.location.href = "/index.html"; 
+                }, 2000); 
+});
+            } catch (err) {
+                console.error("Erreur lors de la récupération de la peluche :", err);
+            }
+        }
+
+        fetchPelucheDetails();
+    </script>
+</body>
+</html>
