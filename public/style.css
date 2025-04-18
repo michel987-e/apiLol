@@ -1,0 +1,142 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;
+}
+
+/* Barre de navigation */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .logo {
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: black;
+}
+
+.navbar .logo img {
+    width: 55px;
+    height: 55px;
+}
+
+.navbar .nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.navbar .nav-links li {
+    margin-left: 25px;
+}
+
+.navbar .nav-links a {
+    color: black;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.navbar .nav-links a:hover {
+    color: #ff4f58;
+}
+
+.search-bar-container {
+    position: relative;
+    width: 300px;
+}
+
+.search-bar {
+    width: 100%;
+    height: 40px;
+    border: 2px solid #111;
+    border-radius: 25px;
+    background-color: white;
+    padding-left: 40px;
+    font-size: 16px;
+    color: black;
+    transition: all 0.3s ease;
+}
+
+.search-bar:focus {
+    background-color: #111;
+    color: white;
+    border-color: #ff4f58;
+    outline: none;
+}
+
+.search-bar::placeholder {
+    color: #aaa;
+    font-style: italic;
+}
+
+.navbar .emoji {
+    font-size: 24px;
+    color: black;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.navbar .emoji:hover {
+    color: #ff4f58;
+}
+
+.category-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px;
+}
+
+.peluche-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.peluche-card {
+    position: relative;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    background-color: rgba(245, 242, 242, 0.916);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.peluche-card img {
+    width: 150px; 
+    height: auto;
+    border-radius: 8px;
+}
+
+.peluche-a img {
+    margin-top: 80px;
+}
+
+.peluche-category {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 14px;
+    font-family: 'Patrick Hand', cursive; 
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.peluche-info {
+    text-align: right;
+    width: 100%;
+    padding: 10px;
+}
