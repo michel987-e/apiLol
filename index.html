@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+
+    <title>Peluches</title>
+   
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo"><img src="../assets/riot.jpg"></div>
+        <ul class="nav-links">
+            <li><a href="#">VOIR TOUR</a></li>
+            <li><a href="#">CATEGORIE</a></li>
+            <li><a href="#">A L'AFFICHE</a></li>
+            <li><a href="#">Soldes</a></li>
+        </ul>
+        <div class="search-bar-container">
+            <input type="text" class="search-bar" placeholder="Rechercher...">
+        </div>
+        <div class="emoji"></div>
+    </div>
+
+    <div class="category-header">
+        <h1>Peluches</h1>
+        <span id="peluche-count">(0)</span>
+    </div>
+    
+    <div id="peluches-container" class="peluche-grid"></div>
+    
+    <script>
+        async function fetchPeluches() {
+    try {
+        const response = await fetch('http://localhost:3000/peluches');
+        const peluches = await response.json();
+
+        document.getElementById('peluche-count').textContent = `(${peluches.length})`;
+
+        const container = document.getElementById('peluches-container');
+        container.innerHTML = '';
+
+        peluches.forEach(peluche => {
+            const pelucheElement = document.createElement('div');
+            pelucheElement.classList.add('peluche-card');
+
+            let categoryImage = '';
+            switch (peluche.categorie)) {
+                case 'lol':
+                    categoryImage = '../assets/lol.png';
+                    break;
+                case 'tft':
+                    categoryImage = '../assets/TFT.png';
+                    break;
+                case 'valo':
+                    categoryImage = '../assets/valo.png';
+                    break;
+                case 'arcane':
+                    categoryImage = '../assets/arcane.png';
+                    break;
+                default:
+                    categoryImage = "pas d'image trouvée"; 
+            }
+            pelucheElement.innerHTML = `
+                <div class="peluche-category">
+                    <img src="/assets/${categoryImage}" alt="${peluche.categorie}">
+                </div>
+                  <div class="peluche-a">
+                <img class="aa" src="/assets/${peluche.photo}" alt="${peluche.nom}">
+                </div>
+                <div class="peluche-info">
+                    <h2>${peluche.nom}</h2>
+                    <p><strong>Prix:</strong> ${peluche.prix}€</p>
+                </div>
+            `;
+            pelucheElement.addEventListener('click', () => {
+                location.assign(`detail.html?id=${peluche.id}`);
+            });
+
+            container.appendChild(pelucheElement);
+        });
+    } catch (err) {
+        console.error("Erreur lors de la récupération des peluches :", err);
+    }
+}
+
+fetchPeluches();
+</script>
+</body>
+</html>
